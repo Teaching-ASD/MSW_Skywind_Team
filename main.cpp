@@ -16,7 +16,7 @@ int main(int argc, char* argv[]) {
             throw(argc);
         }
     }
-    catch(int num){
+    catch(const int num){
         if(num < 7){
             cout << "You entered less data than necessary.Please try again." << endl;
             return 0;
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-    catch(bool condition){
+    catch(const bool condition){
         if(condition == false){
         cout << "You have entered an incorrect data type.Please try again." << endl;
         return 0;
