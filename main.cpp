@@ -51,53 +51,48 @@ int main(int argc, char* argv[]) {
 	Warrior* w1 = new Warrior(argv[1], stoi(argv[2]), stoi(argv[3]));
 	Warrior* w2 = new Warrior(argv[4], stoi(argv[5]), stoi(argv[6]));
 
-	vector<Warrior*> W;
 
-	W.push_back(w1);
-	W.push_back(w2);
 
-    cout << W[0]->getName() << ": HP: " << W[0]->getHp() << "\tDMG: " << W[0]->getDmg() << endl;
-    cout << W[1]->getName() << ": HP: " << W[1]->getHp() << "\tDMG: " << W[1]->getDmg() << endl;
+    cout << w1->getName() << ": HP: " << w1->getHp() << "\tDMG: " << w1->getDmg() << endl;
+    cout << w2->getName() << ": HP: " << w2->getHp() << "\tDMG: " << w2->getDmg() << endl;
 
     cout << endl;
 
     int i = 0;
-    while(W[0]->getHp() > 0 && W[1]->getHp() > 0){
+    while(w1->getHp() > 0 && w2->getHp() > 0){
         if(i == 0){
-            W[0]->Attack(W[1]);
+            w1->Attack(w2);
 
-            cout << W[0]->getName() << " attacks " << W[1]->getName() << "!" << endl;
+            cout << w1->getName() << " attacks " << w2->getName() << "!" << endl;
 
-            cout << W[0]->getName() << ": HP: " << W[0]->getHp() << "\tDMG: " << W[0]->getDmg() << endl;
-            cout << W[1]->getName() << ": HP: " << W[1]->getHp() << "\tDMG: " << W[1]->getDmg() << endl;
+            cout << w1->getName() << ": HP: " << w1->getHp() << "\tDMG: " << w1->getDmg() << endl;
+            cout << w2->getName() << ": HP: " << w2->getHp() << "\tDMG: " << w2->getDmg() << endl;
 
             cout << endl;
 
             i++;
         }
         else{
-            W[1]->Attack(W[0]);
+            w2->Attack(w1);
 
-            cout << W[1]->getName() << " attacks " << W[0]->getName() << "!" << endl;
+            cout << w2->getName() << " attacks " << w1->getName() << "!" << endl;
 
-            cout << W[0]->getName() << ": HP: " << W[0]->getHp() << "\tDMG: " << W[0]->getDmg() << endl;
-            cout << W[1]->getName() << ": HP: " << W[1]->getHp() << "\tDMG: " << W[1]->getDmg() << endl;
+            cout << w1->getName() << ": HP: " << w1->getHp() << "\tDMG: " << w1->getDmg() << endl;
+            cout << w2->getName() << ": HP: " << w2->getHp() << "\tDMG: " << w2->getDmg() << endl;
 
             cout << endl;
 
             i = 0;
         }
     }
-    if(W[0]->getHp() == 0){
-        cout << W[1]->getName() << " wins!" << endl;
+    if(w1->getHp() == 0){
+        cout << w2->getName() << " wins!" << endl;
     }
     else{
-        cout << W[0]->getName() << " wins!" << endl;
+        cout << w1->getName() << " wins!" << endl;
     }
 
-    for (int i = 0; i < W.size(); i++){
-        delete W[i];
-    }
+
 
 	return 0;
 }
