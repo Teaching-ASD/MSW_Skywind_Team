@@ -2,9 +2,9 @@
 
 ## A program leírása:
 A programunk szerepe, hogy kettő harcos párbaját leszimulálja.
-Ehhez létrehoztunk egy osztály, amiből származtatunk két objektumot.
-Ezeknek az objektumoknak(harcosoknak) a memória címeit egy vektorban tároltuk el.
-Mindegyik harcosnak van neve, életerő pontja és sebzése, melyeket argumentumként kell megadni a program indításakor (a megadás módját "A program futtatása" menüpont alatt találod).  
+Ehhez létrehoztunk egy osztályt, amiből származtatunk két objektumot.
+Ezeknek az objektumoknak (harcosoknak) a memória címeit egy vektorban tároltuk el.
+Mindegyik harcosnak van neve, életerő pontja és sebzés pontja, melyeket argumentumként kell megadni a program indításakor (a megadás módja "A program futtatása" menüpont alatt található).  
 A párbaj lezajlása: a harcosok felváltva támadják egymást, a támadott félnek pontosan annyival csökken az életerő pontja amennyi sebzés ponttal rendelkezik a támadó fél.  
 A párbaj akkor ér véget, amikor az egyiküknek teljesen elfogynak az életerő pontjai.
 
