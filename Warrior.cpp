@@ -28,4 +28,6 @@ void Warrior::Attack(Warrior* w){
     }
 }
 
+Warrior::~Warrior(){};
+
 
