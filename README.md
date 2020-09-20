@@ -4,7 +4,7 @@ A programmunk szerepe, hogy kettő harcos párbaját leszimulálja.
 
 Ehez létrehoztunk egy osztály, amiből származtatunk két objectumot.
 
-Ezen objektumok(harcososk) értékeit eltároltuk egy vektorban.
+Ezen objektumok(harcososk)egy memoria címen található értékeit eltároltuk egy vektorban.
 Ezt követően egy támadási kör rendszernek megfelelően harcolnak:
 amig az egyik támad ,addig a másik sebzést szenved el,a következő körben ,a másik harcos támad.
 
