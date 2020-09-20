@@ -1,11 +1,7 @@
 #include "Warrior.h"
 
 
-Warrior::Warrior(std::string name_, int hp_, int dmg_) {
-	this->name = name_;
-	this->hp = hp_;
-	this->dmg = dmg_;
-}
+Warrior::Warrior(std::string name_,int hp_,int dmg_):name(name_), hp(hp_), dmg(dmg_){}
 
 std::string Warrior::getName() const{
 	return this->name;

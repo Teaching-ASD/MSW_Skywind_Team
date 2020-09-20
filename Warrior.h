@@ -8,9 +8,9 @@ class Warrior
 {
 
 private:
-    std::string name;
+    const std::string name;
 	int hp;
-	int dmg;
+    const int dmg;
 
 public:
 	Warrior(std::string, int, int);
