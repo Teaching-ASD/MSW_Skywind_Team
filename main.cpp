@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <jsoncpp/json/json.h>
 
 #include "Warrior.h"
 
@@ -9,89 +11,75 @@ using namespace std;
 int main(int argc, char* argv[]) {
 
     try{
-        if(argc == 7){
-            cout << "You have entered the correct amount of data." << endl << endl;
-        }
-        else{
+        if(argc != 3){
             throw(argc);
         }
     }
     catch(const int num){
-        if(num < 7){
-            cout << "You entered less data than necessary.Please try again." << endl;
+        if(num < 3){
+            cout << "You entered less file than necessary.Please try again." << endl;
             return 0;
         }
         else{
-            cout << "You entered more data than necessary.Please try again." << endl;
+            cout << "You entered more file than necessary.Please try again." << endl;
             return 0;
         }
     }
 
-    try{
-        for(int i=0;i<argc;i++){
-            if(i == 2 || i == 3 || i == 5 || i == 6){
-                string argument = argv[i];
-                for(int j=0;j<argument.length();j++){
-                    if(isdigit(argument[j]) == false){
-                        throw(false);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    catch(const bool condition){
-        if(condition == false){
-        cout << "You have entered an incorrect data type.Please try again." << endl;
-        return 0;
-        }
-    }
+//próbálgatás alatt!!!-----------------------------------------
 
 
-	Warrior* w1 = new Warrior(argv[1], stoi(argv[2]), stoi(argv[3]));
-	Warrior* w2 = new Warrior(argv[4], stoi(argv[5]), stoi(argv[6]));
+    ifstream warrior1(argv[1]);
+    Json::Reader reader;
+    Json::Value value;
+
+    reader.parse(warrior1, value);
+    vector<string> w1Datas;
+    w1Datas.push_back(value["name"].asString());
+    w1Datas.push_back(value["hp"].asString());
+    w1Datas.push_back(value["dmg"].asString());
+
+    warrior1.close();
+
+    ifstream warrior2(argv[2]);
+
+    reader.parse(warrior2, value);
+    vector<string> w2Datas;
+    w2Datas.push_back(value["name"].asString());
+    w2Datas.push_back(value["hp"].asString());
+    w2Datas.push_back(value["dmg"].asString());
 
 
 
-    cout << w1->getName() << ": HP: " << w1->getHp() << "\tDMG: " << w1->getDmg() << endl;
-    cout << w2->getName() << ": HP: " << w2->getHp() << "\tDMG: " << w2->getDmg() << endl;
+    warrior2.close();
+//-------------------------------------------------------------
 
-    cout << endl;
+
+	Warrior* w1 = new Warrior(w1Datas[0], stoi(w1Datas[1]), stoi(w1Datas[2]));
+	Warrior* w2 = new Warrior(w2Datas[0], stoi(w2Datas[1]), stoi(w2Datas[2]));
 
     int i = 0;
     while(w1->getHp() > 0 && w2->getHp() > 0){
         if(i == 0){
             w1->Attack(w2);
-
-            cout << w1->getName() << " attacks " << w2->getName() << "!" << endl;
-
-            cout << w1->getName() << ": HP: " << w1->getHp() << "\tDMG: " << w1->getDmg() << endl;
-            cout << w2->getName() << ": HP: " << w2->getHp() << "\tDMG: " << w2->getDmg() << endl;
-
-            cout << endl;
-
             i++;
         }
         else{
             w2->Attack(w1);
-
-            cout << w2->getName() << " attacks " << w1->getName() << "!" << endl;
-
-            cout << w1->getName() << ": HP: " << w1->getHp() << "\tDMG: " << w1->getDmg() << endl;
-            cout << w2->getName() << ": HP: " << w2->getHp() << "\tDMG: " << w2->getDmg() << endl;
-
-            cout << endl;
-
             i = 0;
         }
     }
     if(w1->getHp() == 0){
         cout << w2->getName() << " wins!" << endl;
+        cout << "Remaining HP: " << w2->getHp() << endl;
     }
     else{
         cout << w1->getName() << " wins!" << endl;
+        cout << "Remaining HP: " << w1->getHp() << endl;
     }
 
+    delete w1;
+    delete w2;
 
 
 	return 0;
