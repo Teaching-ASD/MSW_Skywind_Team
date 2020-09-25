@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -f result.txt
+rm -f results.txt
 
 ./a.out units/Sally.txt units/Maple.txt
 ./a.out units/Sally.txt units/Alduin.txt
@@ -9,10 +9,10 @@ rm -f result.txt
 ./a.out units/Alduin.txt units/Sally.txt
 ./a.out units/Alduin.txt units/Maple.txt
 
-DIFF=$(diff result.txt outputs.txt)
+DIFF=$(diff results.txt outputs.txt)
 
 
 if [ "$DIFF" != "" ]
 then
-	echo "The result and test file are different!"
+	echo "The results and output file are different!"
 fi
