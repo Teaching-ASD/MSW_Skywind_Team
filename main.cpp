@@ -25,9 +25,27 @@ int main(int argc, char* argv[]) {
         }
     }
 
+    ifstream testFirstFile(argv[1]);
+    if(testFirstFile.is_open() == false){
+        cout << "The first file is not exist!" << endl;
+        return 0;
+    }
+    testFirstFile.close();
+
+    ifstream testSecondFile(argv[2]);
+    if(testSecondFile.is_open() == false){
+        cout << "The second file is not exist!" << endl;
+        return 0;
+    }
+    testSecondFile.close();
+
+
+
 
     Warrior*  w1 = new Warrior(Warrior::parseUnit(argv[1])[0],stoi(Warrior::parseUnit(argv[1])[1]),stoi(Warrior::parseUnit(argv[1])[2]));
     Warrior*  w2 = new Warrior(Warrior::parseUnit(argv[2])[0],stoi(Warrior::parseUnit(argv[2])[1]),stoi(Warrior::parseUnit(argv[2])[2]));
+
+
 
 
     int i = 0;
@@ -44,7 +62,9 @@ int main(int argc, char* argv[]) {
 
     ofstream result;
 
-    result.open ("result.txt", ios_base::app);
+    result.open ("results.txt", ios_base::app);
+
+    result << "The result of the fight between " << w1->getName() << " and " << w2->getName() << ":" << endl;
 
 
     if(w1->getHp() == 0){
@@ -61,7 +81,6 @@ int main(int argc, char* argv[]) {
 
         result << w1->getName() << " wins!" << endl;
         result << "Remaining HP: " << w1->getHp() << endl;
-
     }
 
     result.close();

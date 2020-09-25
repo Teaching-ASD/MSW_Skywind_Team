@@ -48,7 +48,7 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
                 }
 
                 wDatas.push_back(lastString);
-                //std::cout << lastString << std::endl;
+
             }
             else if(data.find("hp") == 1){
                 lastString = "";
@@ -63,8 +63,9 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
                         lastString += data[i];
                     }
                 }
+
                 wDatas.push_back(lastString);
-                //std::cout << lastString << std::endl;
+
             }
             else if(data.find("dmg") == 1){
                 lastString = "";
@@ -79,12 +80,13 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
                         lastString += data[i];
                     }
                 }
+
                 wDatas.push_back(lastString);
-                //std::cout << lastString << std::endl;
+
             }
         }
     }
-    //std::cout<<wDatas[0]<<","<<wDatas[1]<<","<<wDatas[2]<<std::endl;
+    fname.close();
     return wDatas;
 }
 
