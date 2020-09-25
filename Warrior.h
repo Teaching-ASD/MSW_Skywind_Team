@@ -1,7 +1,10 @@
 #ifndef WARRIOR_H
 #define WARRIOR_H
 
-#include<iostream>
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <string>
 
 
 class Warrior
@@ -18,8 +21,9 @@ public:
 	int getHp() const;
 	int getDmg() const;
     void Attack(Warrior*);
+    static std::vector<std::string> parseUnit(std::string);
+    void printData();
     ~Warrior();
-
 
 };
 

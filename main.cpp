@@ -1,11 +1,10 @@
 #include <iostream>
-#include <vector>
-#include <fstream>
-#include <jsoncpp/json/json.h>
+
 
 #include "Warrior.h"
 
 using namespace std;
+
 
 
 int main(int argc, char* argv[]) {
@@ -26,37 +25,10 @@ int main(int argc, char* argv[]) {
         }
     }
 
-//próbálgatás alatt!!!-----------------------------------------
 
+    Warrior*  w1 = new Warrior(Warrior::parseUnit(argv[1])[0],stoi(Warrior::parseUnit(argv[1])[1]),stoi(Warrior::parseUnit(argv[1])[2]));
+    Warrior*  w2 = new Warrior(Warrior::parseUnit(argv[2])[0],stoi(Warrior::parseUnit(argv[2])[1]),stoi(Warrior::parseUnit(argv[2])[2]));
 
-    ifstream warrior1(argv[1]);
-    Json::Reader reader;
-    Json::Value value;
-
-    reader.parse(warrior1, value);
-    vector<string> w1Datas;
-    w1Datas.push_back(value["name"].asString());
-    w1Datas.push_back(value["hp"].asString());
-    w1Datas.push_back(value["dmg"].asString());
-
-    warrior1.close();
-
-    ifstream warrior2(argv[2]);
-
-    reader.parse(warrior2, value);
-    vector<string> w2Datas;
-    w2Datas.push_back(value["name"].asString());
-    w2Datas.push_back(value["hp"].asString());
-    w2Datas.push_back(value["dmg"].asString());
-
-
-
-    warrior2.close();
-//-------------------------------------------------------------
-
-
-	Warrior* w1 = new Warrior(w1Datas[0], stoi(w1Datas[1]), stoi(w1Datas[2]));
-	Warrior* w2 = new Warrior(w2Datas[0], stoi(w2Datas[1]), stoi(w2Datas[2]));
 
     int i = 0;
     while(w1->getHp() > 0 && w2->getHp() > 0){
@@ -69,14 +41,30 @@ int main(int argc, char* argv[]) {
             i = 0;
         }
     }
+
+    ofstream result;
+
+    result.open ("result.txt", ios_base::app);
+
+
     if(w1->getHp() == 0){
         cout << w2->getName() << " wins!" << endl;
         cout << "Remaining HP: " << w2->getHp() << endl;
+
+        result << w2->getName() << " wins!" << endl;
+        result << "Remaining HP: " << w2->getHp() << endl;
+
     }
     else{
         cout << w1->getName() << " wins!" << endl;
         cout << "Remaining HP: " << w1->getHp() << endl;
+
+        result << w1->getName() << " wins!" << endl;
+        result << "Remaining HP: " << w1->getHp() << endl;
+
     }
+
+    result.close();
 
     delete w1;
     delete w2;
@@ -84,3 +72,4 @@ int main(int argc, char* argv[]) {
 
 	return 0;
 }
+
