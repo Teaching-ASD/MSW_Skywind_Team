@@ -26,7 +26,9 @@ int main(int argc, char* argv[]) {
     }
 
     for(unsigned int i=1;i<argc ;i++){
-        ifstream testFile(argv[i]);
+        string fileName = argv[i];
+        fileName = "units/" + fileName;
+        ifstream testFile(fileName);
         if(testFile.is_open() == false){
             if(i==1){
                 cout << "The first file is not exist!" << endl;

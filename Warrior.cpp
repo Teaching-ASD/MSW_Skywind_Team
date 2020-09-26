@@ -25,8 +25,8 @@ void Warrior::Attack(Warrior* w){
         w->hp = 0;
     }
 }
-
 std::vector<std::string> Warrior::parseUnit(std::string fileName){
+    fileName = "units/"+fileName;
     std::string lastString = "";
     std::vector<std::string> wDatas;
     std::string data = "";

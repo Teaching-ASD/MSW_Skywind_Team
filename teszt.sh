@@ -2,10 +2,10 @@
 
 rm results.txt
 
-./a.out units/Sally.txt units/Maple.txt
-./a.out units/Sally.txt units/Alduin.txt
-./a.out units/Maple.txt units/Alduin.txt
-./a.out units/Maple.txt units/Sally.txt
-./a.out units/Alduin.txt units/Sally.txt
-./a.out units/Alduin.txt units/Maple.txt
+./a.out Sally.txt Maple.txt
+./a.out Sally.txt Alduin.txt
+./a.out Maple.txt Alduin.txt
+./a.out Maple.txt Sally.txt
+./a.out Alduin.txt Sally.txt
+./a.out Alduin.txt Maple.txt
 
