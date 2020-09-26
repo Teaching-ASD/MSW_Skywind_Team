@@ -1,6 +1,7 @@
 name: FirstTest
 
 on:
+ push:
   branches: [ init ]
 
 jobs:
