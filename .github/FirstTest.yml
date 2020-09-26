@@ -4,9 +4,19 @@ on:
   push:
     branches: [ init ]
 
+
 jobs:
-  build_and_test:
-    run-on: ubuntu-latest
-    steps:
-      -uses: actions/checkout@v2
-      -run : g++ -Wall *.cpp
+  build:
+    runs-on: ubuntu-latest
+
+      - uses: actions/checkout@v2
+
+      - name: Try to compile code
+        run: g++ -Wall *.cpp
+
+      - name: Run the test script
+        run: ./teszt.bash
+
+      -name: Check difficults
+        run: diff outputs.txt results.txt
+          
