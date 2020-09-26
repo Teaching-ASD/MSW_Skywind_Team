@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -uses: actions/checkout@v2
-      -run : g++ -std=c++17 *.cpp
+      -run : g++ -Wall *.cpp
       -run : ./teszt.bash
       -run : diff outputs.txt results.txt 
