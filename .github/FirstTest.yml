@@ -1,6 +1,7 @@
 name: FirstTest
 
-on: push [init]
+on:
+  branches: [init]
 
 jobs:
   build_and_test:
