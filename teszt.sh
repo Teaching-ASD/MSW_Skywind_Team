@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -f results.txt
+rm results.txt
 
 ./a.out units/Sally.txt units/Maple.txt
 ./a.out units/Sally.txt units/Alduin.txt
