@@ -1,0 +1,12 @@
+name: FirstTest
+
+on: push [init]
+
+jobs:
+  build_and_test:
+    run-on: ubuntu-latest
+      steps:
+      -uses: action/checkout@v2
+      -run : g++ -std=c++17 *.cpp
+      -run : ./teszt.bash
+      -run : diff outputs.txt results.txt 
