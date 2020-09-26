@@ -15,4 +15,4 @@ Alduin wins!
 Remaining HP: 170
 The result of the fight between Alduin and Maple:
 Alduin wins!
-Remaining HP: 160
+Remaining HP: 150
