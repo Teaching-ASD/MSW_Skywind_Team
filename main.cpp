@@ -25,27 +25,24 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    ifstream testFirstFile(argv[1]);
-    if(testFirstFile.is_open() == false){
-        cout << "The first file is not exist!" << endl;
-        return 0;
+    for(unsigned int i=1;i<argc ;i++){
+        ifstream testFile(argv[i]);
+        if(testFile.is_open() == false){
+            if(i==1){
+                cout << "The first file is not exist!" << endl;
+                return 0;
+            }
+            else{
+                cout << "The second file is not exist!" << endl;
+                return 0;
+            }
+        }
+        testFile.close();
     }
-    testFirstFile.close();
-
-    ifstream testSecondFile(argv[2]);
-    if(testSecondFile.is_open() == false){
-        cout << "The second file is not exist!" << endl;
-        return 0;
-    }
-    testSecondFile.close();
-
-
 
 
     Warrior*  w1 = new Warrior(Warrior::parseUnit(argv[1])[0],stoi(Warrior::parseUnit(argv[1])[1]),stoi(Warrior::parseUnit(argv[1])[2]));
     Warrior*  w2 = new Warrior(Warrior::parseUnit(argv[2])[0],stoi(Warrior::parseUnit(argv[2])[1]),stoi(Warrior::parseUnit(argv[2])[2]));
-
-
 
 
     int i = 0;
