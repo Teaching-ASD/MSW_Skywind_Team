@@ -9,10 +9,3 @@ rm -f results.txt
 ./a.out units/Alduin.txt units/Sally.txt
 ./a.out units/Alduin.txt units/Maple.txt
 
-DIFF=$(diff results.txt outputs.txt)
-
-
-if [ "$DIFF" != "" ]
-then
-	echo "The results and output file are different!"
-fi
