@@ -41,7 +41,7 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
                     data = data.substr(pos+1);
                     db++;
                 }
-                for(int i=0;i<data.length();i++){
+                for(unsigned int i=0;i<data.length();i++){
                     if(data[i] != '"' && data[i] != ','){
                         lastString += data[i];
                     }
@@ -58,7 +58,7 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
                     data = data.substr(pos+1);
                     db++;
                 }
-                for(int i=0;i<data.length();i++){
+                for(unsigned int i=0;i<data.length();i++){
                     if(data[i] != ' ' && data[i] != ':' && data[i] != ','){
                         lastString += data[i];
                     }
@@ -75,7 +75,7 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
                     data = data.substr(pos+1);
                     db++;
                 }
-                for(int i=0;i<data.length();i++){
+                for(unsigned int i=0;i<data.length();i++){
                     if(data[i] != ' ' && data[i] != ':' && data[i] != ','){
                         lastString += data[i];
                     }
