@@ -1,13 +1,13 @@
 name: FirstTest
 
 on:
- push:
-  branches: [ init ]
+  push:
+    branches: [ init ]
 
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
-      steps:
+    steps:
       -uses: action/checkout@v2
       -run : g++ -std=c++17 *.cpp
       -run : ./teszt.bash
