@@ -18,7 +18,7 @@ for file in ${Files[*]}
         for file2 in ${Files[*]}
         do
             if [ $file != $file2 ]
-                then ./a.out $file $file2
+                then ./a.out $file $file2 >> scriptresult.txt
             fi
         done
     done

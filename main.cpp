@@ -63,9 +63,6 @@ int main(int argc, char* argv[]) {
 
     result.open ("results.txt", ios_base::app);
 
-    result << "The result of the fight between " << w1->getName() << " and " << w2->getName() << ":" << endl;
-
-
     if(w1->getHp() == 0){
         cout << w2->getName() << " wins!" << endl;
         cout << "Remaining HP: " << w2->getHp() << endl;
