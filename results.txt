@@ -1,12 +1,18 @@
+The result of the fight between Alduin and Maple:
 Alduin wins!
 Remaining HP: 160
+The result of the fight between Alduin and Sally:
 Alduin wins!
 Remaining HP: 170
+The result of the fight between Maple and Alduin:
 Alduin wins!
 Remaining HP: 150
+The result of the fight between Maple and Sally:
 Maple wins!
 Remaining HP: 30
+The result of the fight between Sally and Alduin:
 Alduin wins!
 Remaining HP: 140
+The result of the fight between Sally and Maple:
 Sally wins!
 Remaining HP: 5

@@ -11,5 +11,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: g++ -std=c++17 *.cpp
       - run: bash ./teszt.bash
-      - run: diff scriptresult.txt results.txt
+      - run: diff outputs.txt results.txt
           
