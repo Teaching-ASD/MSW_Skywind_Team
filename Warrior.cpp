@@ -40,11 +40,10 @@ void Warrior::Battle(Warrior* w){
     w->Attack(this);
     //std::cout << w->getName() << " attacks " << this->getName() << std::endl;
     //std::cout << this->getName() << " has: " << this->getHp() << " hp!" <<std::endl;
-    float i = 0.1;
 
     while(this->getHp() > 0 && w->getHp() > 0){
-        attackerCd -= i;
-        defenderCd -= i;
+        attackerCd -= 0.1;
+        defenderCd -= 0.1;
 
         if(attackerCd < 0.0){
             this->Attack(w);
