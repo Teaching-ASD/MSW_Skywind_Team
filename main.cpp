@@ -43,21 +43,11 @@ int main(int argc, char* argv[]) {
     }
 
 
-    Warrior*  w1 = new Warrior(Warrior::parseUnit(argv[1])[0],stoi(Warrior::parseUnit(argv[1])[1]),stoi(Warrior::parseUnit(argv[1])[2]));
-    Warrior*  w2 = new Warrior(Warrior::parseUnit(argv[2])[0],stoi(Warrior::parseUnit(argv[2])[1]),stoi(Warrior::parseUnit(argv[2])[2]));
+    Warrior*  w1 = new Warrior(Warrior::parseUnit(argv[1])[0],stoi(Warrior::parseUnit(argv[1])[1]),stoi(Warrior::parseUnit(argv[1])[2]), 7.5);
+    Warrior*  w2 = new Warrior(Warrior::parseUnit(argv[2])[0],stoi(Warrior::parseUnit(argv[2])[1]),stoi(Warrior::parseUnit(argv[2])[2]), 5.0);
 
 
-    int i = 0;
-    while(w1->getHp() > 0 && w2->getHp() > 0){
-        if(i == 0){
-            w1->Attack(w2);
-            i++;
-        }
-        else{
-            w2->Attack(w1);
-            i = 0;
-        }
-    }
+    w1->Battle(w2);
 
     ofstream result;
 

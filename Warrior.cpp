@@ -2,7 +2,7 @@
 
 
 
-Warrior::Warrior(const std::string name_,int hp_,const int dmg_):name(name_), hp(hp_), dmg(dmg_){}
+Warrior::Warrior(const std::string name_,int hp_,const int dmg_, const float attackcooldown_):name(name_), hp(hp_), dmg(dmg_), attackcooldown(attackcooldown_){}
 
 
 std::string Warrior::getName() const{
@@ -17,6 +17,10 @@ int Warrior::getDmg() const{
     return this->dmg;
 }
 
+float Warrior::getAttackCoolDown() const{
+    return this->attackcooldown;
+}
+
 void Warrior::Attack(Warrior* w){
     if(w->hp - this->dmg > 0){
     w->hp = w->hp - this->dmg;
@@ -25,6 +29,39 @@ void Warrior::Attack(Warrior* w){
         w->hp = 0;
     }
 }
+
+void Warrior::Battle(Warrior* w){
+    float attackerCd = this->getAttackCoolDown();
+    float defenderCd = w->getAttackCoolDown();
+
+    this->Attack(w);
+    //std::cout << this->getName() << " attacks " << w->getName() << std::endl;
+    //std::cout << w->getName() << " has: " << w->getHp() << " hp!" <<std::endl;
+    w->Attack(this);
+    //std::cout << w->getName() << " attacks " << this->getName() << std::endl;
+    //std::cout << this->getName() << " has: " << this->getHp() << " hp!" <<std::endl;
+    float i = 0.1;
+
+    while(this->getHp() > 0 && w->getHp() > 0){
+        attackerCd -= i;
+        defenderCd -= i;
+
+        if(attackerCd < 0.0){
+            this->Attack(w);
+            //std::cout << this->getName() << " attacks " << w->getName() << std::endl;
+            //std::cout << w->getName() << " has: " << w->getHp() << " hp!" <<std::endl;
+            attackerCd = this->getAttackCoolDown();
+        }
+        else if(attackerCd > 0.0 && defenderCd < 0.0){
+            w->Attack(this);
+            //std::cout << w->getName() << " attacks " << this->getName() << std::endl;
+            //std::cout << this->getName() << " has: " << this->getHp() << " hp!" <<std::endl;
+            defenderCd = this->getAttackCoolDown();
+        }
+    }
+}
+
+
 std::vector<std::string> Warrior::parseUnit(std::string fileName){
     fileName = "units/"+fileName;
     std::string lastString = "";
@@ -89,6 +126,7 @@ std::vector<std::string> Warrior::parseUnit(std::string fileName){
     fname.close();
     return wDatas;
 }
+
 
 
 
