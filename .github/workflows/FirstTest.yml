@@ -1,4 +1,4 @@
-name: FirstTest
+name: Attackspeed Workflow
 
 on:
   push:
