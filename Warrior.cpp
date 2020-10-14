@@ -31,31 +31,54 @@ void Warrior::Attack(Warrior* w){
 }
 
 void Warrior::Battle(Warrior* w){
+
+    if(this->getHp() > 0){
+        this->Attack(w);
+
+        /*std::cout << this->getName() << " attacks: " << w->getName() << std::endl;
+        std::cout << "Attacker dmg: " << this->getDmg() << std::endl;
+        std::cout << "Defender hp: " << w->getHp() << std::endl << std::endl;*/
+    }
+
+    if(w->getHp() > 0){
+        w->Attack(this);
+
+        /*std::cout << w->getName() << " attacks: " << this->getName() << std::endl;
+        std::cout << "Attacker dmg: " << w->getDmg() << std::endl;
+        std::cout << "Defender hp: " << this->getHp() << std::endl << std::endl;*/
+    }
+
     float attackerCd = this->getAttackCoolDown();
     float defenderCd = w->getAttackCoolDown();
-
-    this->Attack(w);
-    //std::cout << this->getName() << " attacks " << w->getName() << std::endl;
-    //std::cout << w->getName() << " has: " << w->getHp() << " hp!" <<std::endl;
-    w->Attack(this);
-    //std::cout << w->getName() << " attacks " << this->getName() << std::endl;
-    //std::cout << this->getName() << " has: " << this->getHp() << " hp!" <<std::endl;
+    
 
     while(this->getHp() > 0 && w->getHp() > 0){
-        attackerCd -= 0.1;
-        defenderCd -= 0.1;
-
-        if(attackerCd < 0.0){
+        if(attackerCd < defenderCd){
             this->Attack(w);
-            //std::cout << this->getName() << " attacks " << w->getName() << std::endl;
-            //std::cout << w->getName() << " has: " << w->getHp() << " hp!" <<std::endl;
+            defenderCd -= attackerCd;
             attackerCd = this->getAttackCoolDown();
+
+            /*std::cout << this->getName() << " attacks: " << w->getName() << std::endl;
+            std::cout << "Attacker dmg: " << this->getDmg() << std::endl;
+            std::cout << "Defender hp: " << w->getHp() << std::endl << std::endl;*/
         }
-        else if(attackerCd > 0.0 && defenderCd < 0.0){
+        else if(attackerCd > defenderCd){
             w->Attack(this);
-            //std::cout << w->getName() << " attacks " << this->getName() << std::endl;
-            //std::cout << this->getName() << " has: " << this->getHp() << " hp!" <<std::endl;
-            defenderCd = this->getAttackCoolDown();
+            attackerCd -= defenderCd;
+            defenderCd = w->getAttackCoolDown();
+
+            /*std::cout << w->getName() << " attacks: " << this->getName() << std::endl;
+            std::cout << "Attacker dmg: " << w->getDmg() << std::endl;
+            std::cout << "Defender hp: " << this->getHp() << std::endl << std::endl;*/
+        }
+        else{
+            this->Attack(w);
+            attackerCd = this->getAttackCoolDown();
+            defenderCd = w->getAttackCoolDown();
+
+            /*std::cout << this->getName() << " attacks: " << w->getName() << " Equal cooldown!" << std::endl;
+            std::cout << "Attacker dmg: " << this->getDmg() << std::endl;
+            std::cout << "Defender hp: " << w->getHp() << std::endl << std::endl;*/
         }
     }
 }
