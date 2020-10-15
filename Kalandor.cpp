@@ -8,14 +8,9 @@ this->exp=0;
 this->hpcurrent=hp_;
 this->dmgcurrent=dmg_;
 
-} //itt a warrior constructorát kell meghívni + az exp
+}
 
-
-
-
-//Ezen a részen megvalósitani a az értékeke növelését
-
-int Kalandor::modHp(){
+void Kalandor::modstat(){
 
 
 
@@ -25,33 +20,13 @@ if(this->exp<100){
         }
         else if(this->exp>=100){
             hpcurrent=hpcurrent*1.1;
-            this->sethp(hpcurrent);
-
-            this-> exp-=100;
-            return this->getHp();
-
-
-    }
-}
-
-
-
-int Kalandor::moddmg(){
-
-
-
-
-
-if(this->exp<100){
-        this->exp+=getDmg();
-    if(this->exp>=100){
             dmgcurrent=dmgcurrent*1.1;
+            this->sethp(hpcurrent);
             this->setdmg(dmgcurrent*1.1);
 
-            this->exp-=0;
-            return this->getDmg();
+            this-> exp-=100;
 
-        }
+
     }
 }
 
@@ -61,16 +36,6 @@ if(this->exp<100){
 
 
 
-void Kalandor::Attack(Kalandor* k){
-
-
-    if(k->getHp() - this->getDmg() > 0){
-    k->sethp(k->getHp()-this->getDmg());
-    }
-    else{
-        k->sethp(0);
-    }
-}
 std::vector<std::string> Kalandor::parseUnit(std::string fileName){
     fileName = "units/"+fileName;
     std::string lastString = "";

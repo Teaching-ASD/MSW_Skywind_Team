@@ -12,13 +12,7 @@ public:
     Kalandor(std::string,int,int);
 
 
-	int modHp();
-	int moddmg();
-
-
-
-
-    void Attack(Kalandor*);
+	void modstat();
 
     static std::vector<std::string> parseUnit(std::string);
 
