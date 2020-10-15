@@ -5,10 +5,11 @@
 
 class Kalandor : public Warrior{
 private:
-  int xp;
-
+    int exp;
+    int hpcurrent;
+    int dmgcurrent;
 public:
-    Kalandor(std::string,int,int,int);
+    Kalandor(std::string,int,int);
 
 
 	int modHp();

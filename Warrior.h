@@ -12,7 +12,7 @@ class Warrior
 
 private:
     const std::string name;
-protected:
+
 	int hp;
     int dmg;
 
@@ -21,6 +21,11 @@ public:
 	std::string getName() const;
 	int getHp() const;
 	int getDmg() const;
+
+	void sethp(int);
+	void setdmg(int);
+
+
     void Attack(Warrior*);
     static std::vector<std::string> parseUnit(std::string);
     void printData();

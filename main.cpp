@@ -62,8 +62,8 @@ int main(int argc, char* argv[]) {
 
 
 //kalandor létrehoz
-    Kalandor* k1 =new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]),0);//negyedik tag az a induló exp=0
-    Kalandor* k2 =new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]),0);
+    Kalandor* k1 =new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]));//negyedik tag az a induló exp=0
+    Kalandor* k2 =new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]));
 
 
 //

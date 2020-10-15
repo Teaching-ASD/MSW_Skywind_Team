@@ -1,7 +1,14 @@
 #include "Kalandor.h"
 
 
-Kalandor::Kalandor(const std::string name_,int hp_, int dmg_,int exp_):Warrior(name, hp, dmg),exp(exp_){} //itt a warrior constructorát kell meghívni + az exp
+Kalandor::Kalandor(const std::string name_,int hp_, int dmg_):Warrior(name_, hp_, dmg_){
+
+
+this->exp=0;
+this->hpcurrent=hp_;
+this->dmgcurrent=dmg_;
+
+} //itt a warrior constructorát kell meghívni + az exp
 
 
 
@@ -9,20 +16,22 @@ Kalandor::Kalandor(const std::string name_,int hp_, int dmg_,int exp_):Warrior(n
 //Ezen a részen megvalósitani a az értékeke növelését
 
 int Kalandor::modHp(){
-int hpcurrent;
-hpcurrent=this->hp;
+
+
 
 
 if(this->exp<100){
-        this->exp=+getDmg();
-    if(this->exp>=100){
-        this->hp=hpcurrent*1.1;
-        hpcurrent=hpcurrent*1.1;
-        this-> exp=0;
-        return this->hp;
+        this->exp+=this->getDmg();
+        }
+        else if(this->exp>=100){
+            hpcurrent=hpcurrent*1.1;
+            this->sethp(hpcurrent);
 
-}
-}
+            this-> exp-=100;
+            return this->getHp();
+
+
+    }
 }
 
 
@@ -32,22 +41,19 @@ int Kalandor::moddmg(){
 
 
 
-int dmgcurrent;
-dmgcurrent=this->dmg;
 
 if(this->exp<100){
-        this->exp=+getDmg();
+        this->exp+=getDmg();
     if(this->exp>=100){
-        this->dmg=dmgcurrent*1.1;
-        this->exp=0;
-        return this->dmg;
+            dmgcurrent=dmgcurrent*1.1;
+            this->setdmg(dmgcurrent*1.1);
 
+            this->exp-=0;
+            return this->getDmg();
+
+        }
+    }
 }
-
-
-
-}
-
 
 
 
@@ -58,11 +64,11 @@ if(this->exp<100){
 void Kalandor::Attack(Kalandor* k){
 
 
-    if(k->hp - this->dmg > 0){
-    k->hp = k->hp - this->dmg;
+    if(k->getHp() - this->getDmg() > 0){
+    k->sethp(k->getHp()-this->getDmg());
     }
     else{
-        k->hp = 0;
+        k->sethp(0);
     }
 }
 std::vector<std::string> Kalandor::parseUnit(std::string fileName){
