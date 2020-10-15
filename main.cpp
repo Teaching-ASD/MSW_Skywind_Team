@@ -1,7 +1,7 @@
 #include <iostream>
 
 
-#include "Warrior.h"
+#include "Kalandor.h"
 
 using namespace std;
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
     Warrior*  w2 = new Warrior(Warrior::parseUnit(argv[2])[0],stoi(Warrior::parseUnit(argv[2])[1]),stoi(Warrior::parseUnit(argv[2])[2]));
 
 
-    int i = 0;
+    int i =0;
     while(w1->getHp() > 0 && w2->getHp() > 0){
         if(i == 0){
             w1->Attack(w2);
@@ -58,6 +58,33 @@ int main(int argc, char* argv[]) {
             i = 0;
         }
     }
+
+
+
+//kalandor létrehoz
+    Kalandor* k1 =new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]),0);//negyedik tag az a induló exp=0
+    Kalandor* k2 =new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]),0);
+
+
+//
+
+//kalandor féle csata
+    int p =0;
+    while(k1->getHp() > 0 && k2->getHp() > 0){
+        if(p == 0){
+            k1->Attack(k2);
+            k1->moddmg();
+            k1->modHp();
+            p++;
+        }
+        else{
+            k2->Attack(k1);
+            k2->moddmg();
+            k2->modHp();
+            p = 0;
+        }
+    }
+//
 
     ofstream result;
 
