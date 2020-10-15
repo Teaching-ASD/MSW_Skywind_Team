@@ -4,18 +4,19 @@
 
 
 class Kalandor : public Warrior{
+
 private:
     int exp;
-    int hpcurrent;
-    int dmgcurrent;
+    int hpCurrent;
+    int dmgCurrent;
+
 public:
     Kalandor(std::string,int,int);
-
-
-	void modstat();
-
+	void modDatas();
+    void addExp();
+    int getExp() const;
+    //void Attack(Kalandor*);
     static std::vector<std::string> parseUnit(std::string);
-
     ~Kalandor();
 
 

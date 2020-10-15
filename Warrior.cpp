@@ -26,16 +26,12 @@ void Warrior::Attack(Warrior* w){
     }
 }
 
-void Warrior::sethp(int hp){
-
+void Warrior::setHp(int hp){
     this->hp=hp;
-
-
 }
-void Warrior::setdmg(int dmg){
 
-
-this->dmg=dmg;
+void Warrior::setDmg(int dmg){
+    this->dmg=dmg;
 }
 
 

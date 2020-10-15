@@ -2,37 +2,60 @@
 
 
 Kalandor::Kalandor(const std::string name_,int hp_, int dmg_):Warrior(name_, hp_, dmg_){
-
-
 this->exp=0;
-this->hpcurrent=hp_;
-this->dmgcurrent=dmg_;
+this->hpCurrent=hp_;
+this->dmgCurrent=dmg_;
+} //itt a warrior constructor�t kell megh�vni + az exp
 
+//Ezen a r�szen megval�sitani a az �rt�keke n�vel�s�t
+
+void Kalandor::addExp(){
+    this->exp += this->getDmg();
 }
 
-void Kalandor::modstat(){
+void Kalandor::modDatas(){  
 
+    if(this->exp >= 100){
 
+        hpCurrent=hpCurrent*1.1;
+        this->setHp(this->hpCurrent);
 
+        this->dmgCurrent=this->dmgCurrent*1.1;
+        this->setDmg(this->dmgCurrent);
 
-if(this->exp<100){
-        this->exp+=this->getDmg();
-        }
-        else if(this->exp>=100){
-            hpcurrent=hpcurrent*1.1;
-            dmgcurrent=dmgcurrent*1.1;
-            this->sethp(hpcurrent);
-            this->setdmg(dmgcurrent*1.1);
-
-            this-> exp-=100;
-
+        this->exp-=100;
 
     }
 }
 
+int Kalandor::getExp() const {
+    return this->exp;
+}
+
+/*int Kalandor::modDmg(){
+
+    if(this->exp<100){
+        this->exp+=getDmg();
+    }
+    else{
+            dmgCurrent=dmgCurrent*1.1;
+            this->setDmg(dmgCurrent*1.1);
+            this->exp-=0;
+            return this->getDmg();
+        }
+    }
+}*/
 
 
+/*void Kalandor::Attack(Kalandor* k){
 
+    if(k->getHp() - this->getDmg() > 0){
+    k->setHp(k->getHp()-this->getDmg());
+    }
+    else{
+        k->setHp(0);
+    }
+}*/
 
 
 
