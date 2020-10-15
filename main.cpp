@@ -114,6 +114,9 @@ int main(int argc, char* argv[]) {
     delete w1;
     delete w2;
 
+    delete k1;
+    delete k2;
+
 
 	return 0;
 }
