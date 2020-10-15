@@ -12,8 +12,9 @@ class Warrior
 
 private:
     const std::string name;
+protected:
 	int hp;
-    const int dmg;
+    int dmg;
 
 public:
 	Warrior(std::string, int, int);
@@ -26,5 +27,6 @@ public:
     ~Warrior();
 
 };
+
 
 #endif // WARRIOR_H
