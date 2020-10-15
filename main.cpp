@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
     while(k1->getHp() > 0 && k2->getHp() > 0){
         if(p == 0){
             k1->Attack(k2);
-            k1->moddstat();
+            k1->modstat();
 
             p++;
         }
