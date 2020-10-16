@@ -20,4 +20,7 @@ jobs:
       - run: cppcheck *.cpp --enable=warning
       - run: clang++ *.cpp -fsanitize=address
       - run: clang++ *.cpp -fsanitize=memory
+      - run: sudo apt install valgrind
+      - run: valgrind --leak-check=yes --log-file=valgrind.log --error-exitcode=1 -v ./a.out units/Alduin.txt units/Sally.txt
+      - run: valgrind --tool=callgrind --log-file=valcallgrind.log -h ./a.out units/Alduin.txt units/Sally.txt
           
