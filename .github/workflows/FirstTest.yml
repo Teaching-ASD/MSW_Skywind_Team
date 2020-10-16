@@ -2,7 +2,7 @@ name: FirstTest
 
 on:
   push:
-    branches: [ init ]
+    branches: [ levelup ]
 
 jobs:
   build:
