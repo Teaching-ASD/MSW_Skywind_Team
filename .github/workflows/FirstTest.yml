@@ -23,4 +23,15 @@ jobs:
       - run: sudo apt install valgrind
       - run: valgrind --leak-check=yes --log-file=valgrind.log --error-exitcode=1 -v ./a.out units/Alduin.txt units/Sally.txt
       - run: valgrind --tool=callgrind --log-file=valcallgrind.log -h ./a.out units/Alduin.txt units/Sally.txt
+      - name: Uploading valgrind results
+        uses: actions/upload-artifact@v2
+        with:
+          name: valgrind
+          path: ./valgrind.txt
+
+      - name: Uploading callgrind results
+        uses: actions/upload-artifact@v2
+        with:
+           name: valcallgrind
+           path: ./valcallgrind.txt
           
