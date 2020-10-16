@@ -34,18 +34,10 @@ void Warrior::Battle(Warrior* w){
 
     if(this->getHp() > 0){
         this->Attack(w);
-
-        /*std::cout << this->getName() << " attacks: " << w->getName() << std::endl;
-        std::cout << "Attacker dmg: " << this->getDmg() << std::endl;
-        std::cout << "Defender hp: " << w->getHp() << std::endl << std::endl;*/
     }
 
     if(w->getHp() > 0){
         w->Attack(this);
-
-        /*std::cout << w->getName() << " attacks: " << this->getName() << std::endl;
-        std::cout << "Attacker dmg: " << w->getDmg() << std::endl;
-        std::cout << "Defender hp: " << this->getHp() << std::endl << std::endl;*/
     }
 
     float attackerCd = this->getAttackCoolDown();
@@ -57,28 +49,19 @@ void Warrior::Battle(Warrior* w){
             this->Attack(w);
             defenderCd -= attackerCd;
             attackerCd = this->getAttackCoolDown();
-
-            /*std::cout << this->getName() << " attacks: " << w->getName() << std::endl;
-            std::cout << "Attacker dmg: " << this->getDmg() << std::endl;
-            std::cout << "Defender hp: " << w->getHp() << std::endl << std::endl;*/
         }
         else if(attackerCd > defenderCd){
             w->Attack(this);
             attackerCd -= defenderCd;
             defenderCd = w->getAttackCoolDown();
-
-            /*std::cout << w->getName() << " attacks: " << this->getName() << std::endl;
-            std::cout << "Attacker dmg: " << w->getDmg() << std::endl;
-            std::cout << "Defender hp: " << this->getHp() << std::endl << std::endl;*/
         }
         else{
             this->Attack(w);
             attackerCd = this->getAttackCoolDown();
-            defenderCd = w->getAttackCoolDown();
-
-            /*std::cout << this->getName() << " attacks: " << w->getName() << " Equal cooldown!" << std::endl;
-            std::cout << "Attacker dmg: " << this->getDmg() << std::endl;
-            std::cout << "Defender hp: " << w->getHp() << std::endl << std::endl;*/
+            if(w->getHp() > 0){
+                w->Attack(this);
+                defenderCd = w->getAttackCoolDown();
+            }
         }
     }
 }
