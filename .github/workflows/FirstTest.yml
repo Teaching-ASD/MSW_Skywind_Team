@@ -20,8 +20,7 @@ jobs:
       - run: cppcheck *.cpp --enable=warning
       - run: clang++ *.cpp -fsanitize=address
       - run: clang++ *.cpp -fsanitize=memory
-      - run: sudo apt install valgrind
-      - run: valgrind ./a.out units/Alduin.txt units/Sally.txt
+     
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
