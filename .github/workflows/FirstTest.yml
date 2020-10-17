@@ -20,8 +20,7 @@ jobs:
       - run: cppcheck *.cpp --enable=warning
       - run: clang++ *.cpp -fsanitize=address
       - run: clang++ *.cpp -fsanitize=memory
-      - run: cppcheck *.cpp --enable=warning,style,performance --error-exitcode=1 --output-file=style_performance.txt
-     
+      - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance.txt
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
