@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    for(unsigned int i=1;i<argc ;i++){
+    for(int i=1;i<argc ;i++){
         string fileName = argv[i];
         fileName = "units/" + fileName;
         ifstream testFile(fileName);
