@@ -1,8 +1,8 @@
-name: FirstTest
+name: Attackspeed Workflow
 
 on:
   push:
-    branches: [ init ]
+    branches: [ attackspeed ]
 
 jobs:
   build:
