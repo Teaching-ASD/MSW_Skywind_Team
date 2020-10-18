@@ -25,7 +25,7 @@ jobs:
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
-          name: style_performance
-          path: style_performance.txt
+          name: style_performance1
+          path: style_performance1.txt
  
           
