@@ -1,7 +1,7 @@
 #include "Kalandor.h"
 
 
-Kalandor::Kalandor(const std::string name_,int hp_, int dmg_, float attackcooldown_):Warrior(name_, hp_, dmg_, attackcooldown_){
+Kalandor::Kalandor(std::string name_,int hp_, int dmg_, float attackcooldown_):Warrior(name_, hp_, dmg_, attackcooldown_){
 this->exp=0;
 this->hpCurrent=hp_;
 this->dmgCurrent=dmg_;
@@ -85,6 +85,29 @@ void Kalandor::Battle(Kalandor* k){
             }
         }
     }
+}
+
+Kalandor Kalandor::parseUnit(std::map<std::string,std::string> map){
+    std::string name = "";
+    int hp = 0;
+    int dmg = 0;
+    float attackcooldown = 0;
+    for (const auto& x : map) {
+        if(x.first == "name"){
+            name = x.second;
+        }
+        else if(x.first == "hp"){
+            hp = std::stoi(x.second);
+        }
+        else if(x.first == "dmg"){
+            dmg = std::stoi(x.second);
+        }
+        else if(x.first == "attackcooldown"){
+            attackcooldown = std::stof(x.second);
+        }
+    }
+    Kalandor k1(name, hp, dmg, attackcooldown);
+    return k1;
 }
 
 Kalandor::~Kalandor(){};

@@ -17,6 +17,10 @@ int Warrior::getDmg() const{
     return this->dmg;
 }
 
+float Warrior::getAttackCoolDown() const{
+    return this->attackcooldown;
+}
+
 void Warrior::Attack(Warrior* w){
     if(w->hp - this->dmg > 0){
     w->hp = w->hp - this->dmg;
@@ -25,6 +29,18 @@ void Warrior::Attack(Warrior* w){
         w->hp = 0;
     }
 }
+
+void Warrior::setHp(int hp){
+    this->hp=hp;
+}
+
+void Warrior::setDmg(int dmg){
+    this->dmg=dmg;
+}
+void Warrior::setAttackCd(float){
+    this->attackcooldown=attackcooldown;
+}
+
 Warrior Warrior::parseUnit(std::map<std::string,std::string> map){
     std::string name = "";
     int hp = 0;

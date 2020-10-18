@@ -17,6 +17,7 @@ public:
 	void modDatas();
     void addExp();
     void Battle(Kalandor*);
+    static Kalandor parseUnit(std::map<std::string, std::string>);
     ~Kalandor();
 
 };
