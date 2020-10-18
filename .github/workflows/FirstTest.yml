@@ -1,8 +1,10 @@
-name: Attackspeed Workflow
+
+name: LevelUp
 
 on:
   push:
-    branches: [ attackspeed ]
+    branches: [ levelup ]
+
 
 jobs:
   build:
@@ -12,5 +14,19 @@ jobs:
       - run: g++ -std=c++17 *.cpp
       - run: bash ./teszt.bash
       - run: diff outputs.txt results.txt
-     
+      - run: sudo apt install clang
+      - run: g++ *.cpp -Wall
+      - run:  g++ *.cpp -Wextra
+      - run: clang++ *.cpp -Wall
+      - run: sudo apt install cppcheck
+      - run: cppcheck *.cpp --enable=warning
+      - run: clang++ *.cpp -fsanitize=address
+      - run: clang++ *.cpp -fsanitize=memory
+      - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
+      - name: Upload file
+        uses: actions/upload-artifact@v2
+        with:
+          name: style_performance1
+          path: style_performance1.txt
+
           
