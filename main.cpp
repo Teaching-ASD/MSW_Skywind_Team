@@ -34,25 +34,6 @@ void Eredmeny(Kalandor* k1,Kalandor* k2){
 }
 
 
-void Play(Kalandor *k1, Kalandor *k2){
-    int i =0;
-    while(k1->getHp() > 0 && k2->getHp() > 0){
-        if(i == 0){
-            k1->Attack(k2);
-            k1->addExp();
-            k1->modDatas();
-            i++;
-        }
-        else{
-            k2->Attack(k1);
-            k2->addExp();
-            k2->modDatas();
-            i = 0;
-        }
-    }
-    Eredmeny(k1,k2);
-}
-
 
 
 int main(int argc, char* argv[]) {
@@ -75,9 +56,10 @@ int main(int argc, char* argv[]) {
 
 
     try{
-        Kalandor *k1 = new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]));//negyedik tag az a indul� exp=0
-        Kalandor *k2 = new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]));
-        Play(k1,k2);
+        Kalandor *k1 = new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]), 20.3);
+        Kalandor *k2 = new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]), 12.4);
+        k1->Battle(k2);
+        Eredmeny(k1,k2);
         
     }catch (exception &e){
         cout<<"An unexpected error ocurred!" << e.what() <<endl;

@@ -1,10 +1,11 @@
 #include "Kalandor.h"
 
 
-Kalandor::Kalandor(const std::string name_,int hp_, int dmg_):Warrior(name_, hp_, dmg_){
+Kalandor::Kalandor(const std::string name_,int hp_, int dmg_, float attackcooldown_):Warrior(name_, hp_, dmg_, attackcooldown_){
 this->exp=0;
 this->hpCurrent=hp_;
 this->dmgCurrent=dmg_;
+this->attackCdCurrent = attackcooldown_;
 }
 
 void Kalandor::addExp(){
@@ -21,8 +22,68 @@ void Kalandor::modDatas(){
         this->dmgCurrent=this->dmgCurrent*1.1;
         this->setDmg(this->dmgCurrent);
 
+        attackCdCurrent=attackCdCurrent*0.9;
+        this->setAttackCd(this->attackCdCurrent);
+
         this->exp-=100;
 
+    }
+}
+
+void Kalandor::Attack(Kalandor* k){
+    if(k->getHp() - this->getDmg() > 0){
+    k->setHp(k->getHp() - this->getDmg());
+    }
+    else{
+        k->setHp(0);
+    }
+}
+
+void Kalandor::Battle(Kalandor* k){
+
+    if(this->getHp() > 0){
+        this->Attack(k);
+        this->addExp();
+        this->modDatas();
+    }
+
+    if(k->getHp() > 0){
+        k->Attack(this);
+        k->addExp();
+        k->modDatas();
+    }
+
+    float attackerCd = this->getAttackCoolDown();
+    float defenderCd = k->getAttackCoolDown();
+    
+
+    while(this->getHp() > 0 && k->getHp() > 0){
+        if(attackerCd < defenderCd){
+            this->Attack(k);
+            this->addExp();
+            this->modDatas();
+            defenderCd -= attackerCd;
+            attackerCd = this->getAttackCoolDown();
+        }
+        else if(attackerCd > defenderCd){
+            k->Attack(this);
+            k->addExp();
+            k->modDatas();
+            attackerCd -= defenderCd;
+            defenderCd = k->getAttackCoolDown();
+        }
+        else{
+            this->Attack(k);
+            this->addExp();
+            this->modDatas();
+            attackerCd = this->getAttackCoolDown();
+            if(k->getHp() > 0){
+                k->Attack(this);
+                k->addExp();
+                k->modDatas();
+                defenderCd = k->getAttackCoolDown();
+            }
+        }
     }
 }
 

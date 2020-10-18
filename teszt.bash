@@ -6,7 +6,7 @@ cd units
 
 Files=()
 
-for file in *.txt
+for file in *.json
     do
         Files+=($file)
     done
