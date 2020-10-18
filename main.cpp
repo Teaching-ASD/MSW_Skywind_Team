@@ -1,38 +1,37 @@
 #include <iostream>
 
-#include "Kalandor.h"
+#include "Warrior.h"
 
 using namespace std;
 
 
-void Eredmeny(Kalandor* k1,Kalandor* k2){
+void Eredmeny(Warrior* w1, Warrior* w2){
     ofstream result;
 
     result.open ("results.txt", ios_base::app);
 
-    result << "The result of the fight between " << k1->getName() << " and " << k2->getName() << ":" << endl;
+    result << "The result of the fight between " << w1->getName() << " and " << w2->getName() << ":" << endl;
 
 
-    if(k1->getHp() == 0){
-        cout << k2->getName() << " wins!" << endl;
-        cout << "Remaining HP: " << k2->getHp() << endl;
+    if(w1->getHp() == 0){
+        cout << w2->getName() << " wins!" << endl;
+        cout << "Remaining HP: " << w2->getHp() << endl;
 
-        result << k2->getName() << " wins!" << endl;
-        result << "Remaining HP: " << k2->getHp() << endl;
+        result << w2->getName() << " wins!" << endl;
+        result << "Remaining HP: " << w2->getHp() << endl;
 
     }
     else{
-        cout << k1->getName() << " wins!" << endl;
-        cout << "Remaining HP: " << k1->getHp() << endl;
+        cout << w1->getName() << " wins!" << endl;
+        cout << "Remaining HP: " << w1->getHp() << endl;
 
-        result << k1->getName() << " wins!" << endl;
-        result << "Remaining HP: " << k1->getHp() << endl;
+        result << w1->getName() << " wins!" << endl;
+        result << "Remaining HP: " << w1->getHp() << endl;
     }
-    delete k1;
-    delete k2;
+    delete w1;
+    delete w2;
     result.close();
 }
-
 
 
 
@@ -46,42 +45,37 @@ int main(int argc, char* argv[]) {
     catch(const int num){
         if(num < 3){
             cout << "You entered less file than necessary.Please try again." << endl;
-            return 1;
+            return 0;
         }
         else{
             cout << "You entered more file than necessary.Please try again." << endl;
-            return 1;
+            return 0;
         }
     }
-     
-    for(unsigned int i=1;i<argc ;i++){
-        string fileName = argv[i];
-        fileName = "units/" + fileName;
-        ifstream testFile(fileName);
-        if(testFile.is_open() == false){
-            if(i==1){
-                cout << "The first file is not exist!" << endl;
-                return 0;
+    
+    
+    try{
+        Warrior* w1 = new Warrior(Warrior::parseUnit(Json::jsonParse(Json::inputFile(argv[1]))));
+        Warrior* w2 = new Warrior(Warrior::parseUnit(Json::jsonParse(Json::inputFile(argv[2]))));
+
+    
+        int i = 0;
+        while(w1->getHp() > 0 && w2->getHp() > 0){
+            if(i == 0){
+                w1->Attack(w2);
+                i++;
             }
             else{
-                cout << "The second file is not exist!" << endl;
-                return 0;
+                w2->Attack(w1);
+                i = 0;
             }
         }
-        testFile.close();
-    }
-
-
-    try{
-        Kalandor *k1 = new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]), 20.3);
-        Kalandor *k2 = new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]), 12.4);
-        k1->Battle(k2);
-        Eredmeny(k1,k2);
-        
+        Eredmeny(w1,w2);
     }catch (exception &e){
-        cout<<"An unexpected error ocurred!" << e.what() <<endl;
+        cout<< e.what() <<endl;
         return 1;
     }
+
 
 	return 0;
 }

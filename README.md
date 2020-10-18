@@ -7,11 +7,6 @@ Mindegyik harcosnak van neve, életerő pontja és sebzés pontja, melyeket az a
 A párbaj lezajlása: a harcosok felváltva támadják egymást, a támadott félnek pontosan annyival csökken az életerő pontja amennyi sebzés ponttal rendelkezik a támadó fél.  
 A párbaj akkor ér véget, amikor az egyik félnek teljesen elfogynak az életerő pontjai.
 
-## A hősők fejlődése
-A programunk kiegészült egy kalandor osztállyal amit a warrior ős osztályból származtatunk.
-A két osztály közötti különbség az ,hogy a kalandorok képesek fejlődéssel nagyobb támadó erőre szert tenni és magassabb ellenállásra az ellenfeleikkel szemben.
-Ezt a kalandorok tapasztalat szerzéssel teszik lehetővé.
-
 ## A program futtatása:
 * Linux rendszeren:
     * Linux terminál megnyitása.
