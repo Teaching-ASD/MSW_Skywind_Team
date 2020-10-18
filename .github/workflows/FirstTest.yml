@@ -20,7 +20,9 @@ jobs:
       - run: cppcheck *.cpp --enable=warning
       - run: clang++ *.cpp -fsanitize=address
       - run: clang++ *.cpp -fsanitize=memory
-      - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance.txt
+      - run: sudo apt install valgrind
+      - run: valgrind --leak-check=full --error-exitcode=1 ./a.out Alduin.json Sally.json
+      - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
