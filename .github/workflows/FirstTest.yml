@@ -1,8 +1,10 @@
+
 name: LevelUp
 
 on:
   push:
     branches: [ levelup ]
+
 
 jobs:
   build:
@@ -20,12 +22,11 @@ jobs:
       - run: cppcheck *.cpp --enable=warning
       - run: clang++ *.cpp -fsanitize=address
       - run: clang++ *.cpp -fsanitize=memory
-     
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
           name: style_performance1
           path: style_performance1.txt
- 
+
           

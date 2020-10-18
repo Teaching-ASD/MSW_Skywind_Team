@@ -53,6 +53,23 @@ int main(int argc, char* argv[]) {
             return 1;
         }
     }
+     
+    for(unsigned int i=1;i<argc ;i++){
+        string fileName = argv[i];
+        fileName = "units/" + fileName;
+        ifstream testFile(fileName);
+        if(testFile.is_open() == false){
+            if(i==1){
+                cout << "The first file is not exist!" << endl;
+                return 0;
+            }
+            else{
+                cout << "The second file is not exist!" << endl;
+                return 0;
+            }
+        }
+        testFile.close();
+    }
 
 
     try{
