@@ -1,7 +1,6 @@
 #ifndef WARRIOR_H
 #define WARRIOR_H
 
-#include <iostream>
 #include <vector>
 #include <fstream>
 #include <string>
@@ -24,7 +23,6 @@ public:
 	void setDmg(int);
     void Attack(Warrior*);
     static std::vector<std::string> parseUnit(std::string);
-    void printData();
     ~Warrior();
 
 };

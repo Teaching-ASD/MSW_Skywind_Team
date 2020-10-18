@@ -14,11 +14,7 @@ public:
     Kalandor(std::string,int,int);
 	void modDatas();
     void addExp();
-    int getExp() const;
-    //void Attack(Kalandor*);
-    static std::vector<std::string> parseUnit(std::string);
     ~Kalandor();
-
 
 };
 
