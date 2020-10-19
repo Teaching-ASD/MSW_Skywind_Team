@@ -17,16 +17,19 @@
 #include <fstream>
 #include <string>
 
+#include "Json.h"
+
 
 class Warrior
 {
 
 private:
 
-    const std::string name; ///< A Warrior neve
-	  int hp; ///< A Warrior életerőpontja
+    std::string name; ///< A Warrior neve
+	int hp; ///< A Warrior életerőpontja
     int dmg;  ///< A Warrior sebzéspontja
     float attackcooldown; ///< A Warrior támadásának betöltési ideje
+    void Attack(Warrior*);
 
   
 public:
@@ -79,7 +82,7 @@ public:
      * Kinyeri a Warrior adatait a paraméterként megadott fájlból és eltárolja azokat egy vektorban,
      * majd, ha megvan az összes adat visszaadja a vektort
     */
-    static std::vector<std::string> parseUnit(std::string /** [in] A fájl neve, amelyből ki szeretnénk nyerni a Warrior adatait.*/);
+    static Warrior parseUnit(std::map<std::string, std::string> /** [in] A fájl neve, amelyből ki szeretnénk nyerni a Warrior adatait.*/);
 
     /**
      * \brief A Warrior osztály destruktora.

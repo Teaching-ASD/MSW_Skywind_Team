@@ -34,8 +34,6 @@ void Eredmeny(Kalandor* k1,Kalandor* k2){
 }
 
 
-
-
 int main(int argc, char* argv[]) {
 
     try{
@@ -53,36 +51,17 @@ int main(int argc, char* argv[]) {
             return 1;
         }
     }
-     
-    for(unsigned int i=1;i<argc ;i++){
-        string fileName = argv[i];
-        fileName = "units/" + fileName;
-        ifstream testFile(fileName);
-        if(testFile.is_open() == false){
-            if(i==1){
-                cout << "The first file is not exist!" << endl;
-                return 0;
-            }
-            else{
-                cout << "The second file is not exist!" << endl;
-                return 0;
-            }
-        }
-        testFile.close();
-    }
-
 
     try{
-        Kalandor *k1 = new Kalandor(Kalandor::parseUnit(argv[1])[0],stoi(Kalandor::parseUnit(argv[1])[1]),stoi(Kalandor::parseUnit(argv[1])[2]), 20.3);
-        Kalandor *k2 = new Kalandor(Kalandor::parseUnit(argv[2])[0],stoi(Kalandor::parseUnit(argv[2])[1]),stoi(Kalandor::parseUnit(argv[2])[2]), 12.4);
+        Kalandor* k1 = new Kalandor(Kalandor::parseUnit(Json::jsonParse(Json::inputFile(argv[1]))));
+        Kalandor* k2 = new Kalandor(Kalandor::parseUnit(Json::jsonParse(Json::inputFile(argv[2]))));
         k1->Battle(k2);
         Eredmeny(k1,k2);
         
     }catch (exception &e){
-        cout<<"An unexpected error ocurred!" << e.what() <<endl;
+        cout<< e.what() <<endl;
         return 1;
     }
 
 	return 0;
 }
-

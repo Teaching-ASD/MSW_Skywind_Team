@@ -3,7 +3,7 @@ name: LevelUp
 
 on:
   push:
-    branches: [ levelup ]
+    branches: [ jsonparser ]
 
 
 jobs:

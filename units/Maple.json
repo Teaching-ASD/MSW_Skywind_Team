@@ -1,7 +1,20 @@
 {
 
+"attackcooldown" : 14,
+
+
+
+
+
+
 "name" : "Maple",
-"hp" : 150,
-"dmg" : 10
+
+
+
+
+"dmg" : 10,
+"hp" : 150
+
+
 
 }
