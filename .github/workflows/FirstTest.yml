@@ -1,4 +1,4 @@
-name: RefactorTest
+name: Documentation Test
 
 on:
   push:
