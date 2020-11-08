@@ -1,29 +1,22 @@
-name: Doxygen Test 
+name: Documentation
 
 on:
   push:
-    branches:
-      - documentation
-      - gh-pages
 
 jobs:
-
-  deploy:
-    name: Deploy to GitHub Pages
+  doxygen:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install doxygen
+      - run: sudo apt-get install graphviz
+      - run: doxygen doxconf
+      - name: Push git subdirectory as branch
 
-    - run: sudo apt-get install doxygen
-    - run: sudo apt-get install graphviz
-    - run: doxygen doxconf
+        uses: s0/git-publish-subdir-action@v2.4.0
 
-    - name: Push git subdirectory as branch
-
-      uses: s0/git-publish-subdir-action@v2.4.0
-
-      env:
-        REPO: self
-        BRANCH: gh-pages
-        FOLDER: DOCS/html
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: DOCS/html
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
