@@ -2,6 +2,7 @@ OBJS:= main.o hero.o monster.o json.o
 CFLAGS:= -Wall
 CC:= g++
 
+
 game: $(OBJS)
     $(CC) $(CFLAGS) -o game $(OBJS)
 
