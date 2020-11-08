@@ -11,10 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: g++-10 -std=c++17 -lstdc++fs *.cpp
+      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra
       - run: sudo apt install clang
-      - run: g++-10 *.cpp -Wall
-      - run:  g++-10 *.cpp -Wextra
+      
       - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
       - run: cppcheck *.cpp --enable=warning
