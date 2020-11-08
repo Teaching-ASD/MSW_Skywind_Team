@@ -1,0 +1,26 @@
+name: RefactorTest
+
+on:
+  push:
+    branches: [ documentation ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt install clang
+      - run: sudo apt install cppcheck
+      - run: sudo apt install valgrind
+      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra
+      - run: cppcheck *.cpp --enable=warning
+      - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
+      - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
+      - name: Upload file
+        uses: actions/upload-artifact@v2
+        with:
+          name: style_performance1
+          path: style_performance1.txt
+
+          
