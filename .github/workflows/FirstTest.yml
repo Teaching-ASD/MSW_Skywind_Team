@@ -1,9 +1,9 @@
 
-name: LevelUp
+name: RefactorTest
 
 on:
   push:
-    branches: [ jsonparser ]
+    branches: [ refactor ]
 
 
 jobs:
@@ -12,8 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: g++ -std=c++17 *.cpp
-      - run: bash ./teszt.bash
-      - run: diff outputs.txt results.txt
       - run: sudo apt install clang
       - run: g++ *.cpp -Wall
       - run:  g++ *.cpp -Wextra
@@ -23,6 +21,7 @@ jobs:
       - run: clang++ *.cpp -fsanitize=address
       - run: clang++ *.cpp -fsanitize=memory
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
+      - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:

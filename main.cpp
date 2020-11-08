@@ -1,67 +1,74 @@
 #include <iostream>
+#include <map>
+#include <string>
+#include <filesystem>
+#include <sstream>
+#include <algorithm>
+#include <iterator>
+#include <list>
 
-#include "Kalandor.h"
-
-using namespace std;
-
-
-void Eredmeny(Kalandor* k1,Kalandor* k2){
-    ofstream result;
-
-    result.open ("results.txt", ios_base::app);
-
-    result << "The result of the fight between " << k1->getName() << " and " << k2->getName() << ":" << endl;
+#include "JSON.h"
+#include "Hero.h"
+#include "Monster.h"
 
 
-    if(k1->getHp() == 0){
-        cout << k2->getName() << " wins!" << endl;
-        cout << "Remaining HP: " << k2->getHp() << endl;
 
-        result << k2->getName() << " wins!" << endl;
-        result << "Remaining HP: " << k2->getHp() << endl;
 
-    }
-    else{
-        cout << k1->getName() << " wins!" << endl;
-        cout << "Remaining HP: " << k1->getHp() << endl;
+const std::map<int, std::string> error_messages = {
+    { 1 , "Bad number of arguments. Only a single scenario file should be provided." },
+    { 2 , "The provided scenario file is not accessible." },
+    { 3 , "The provided scenario file is invalid." },
+    { 4 , "JSON parsing error." }
+};
 
-        result << k1->getName() << " wins!" << endl;
-        result << "Remaining HP: " << k1->getHp() << endl;
-    }
-    delete k1;
-    delete k2;
-    result.close();
+void bad_exit(int exitcode) {
+    std::cerr
+        << (error_messages.count(exitcode) ? error_messages.at(exitcode) : "Unknown error")
+        << std::endl;
+    exit(exitcode);
 }
 
+int main(int argc, char** argv) {
+    if (argc != 2) bad_exit(1);
+    if (!std::filesystem::exists(argv[1])) bad_exit(2);
 
-int main(int argc, char* argv[]) {
-
-    try{
-        if(argc != 3){
-            throw(argc);
+    std::string hero_file;
+    std::list<std::string> monster_files;
+    try {
+        JSON scenario = JSON::parseFromFile(argv[1]);
+        if (!(scenario.count("hero") && scenario.count("monsters"))) bad_exit(3);
+        else {
+            hero_file = scenario.get<std::string>("hero");
+            std::istringstream monsters(scenario.get<std::string>("monsters"));
+            std::copy(std::istream_iterator<std::string>(monsters),
+                std::istream_iterator<std::string>(),
+                std::back_inserter(monster_files));
         }
     }
-    catch(const int num){
-        if(num < 3){
-            cout << "You entered less file than necessary.Please try again." << endl;
-            return 1;
-        }
-        else{
-            cout << "You entered more file than necessary.Please try again." << endl;
-            return 1;
-        }
-    }
+    catch (const JSON::ParseException & e) { bad_exit(4); }
 
-    try{
-        Kalandor* k1 = new Kalandor(Kalandor::parseUnit(Json::jsonParse(Json::inputFile(argv[1]))));
-        Kalandor* k2 = new Kalandor(Kalandor::parseUnit(Json::jsonParse(Json::inputFile(argv[2]))));
-        k1->Battle(k2);
-        Eredmeny(k1,k2);
-        
-    }catch (exception &e){
-        cout<< e.what() <<endl;
-        return 1;
-    }
+    try {
+        Hero hero{ Hero::parse(hero_file) };
+        std::list<Monster> monsters;
+        for (const auto& monster_file : monster_files)
+            monsters.push_back(Monster::parse(monster_file));
 
-	return 0;
+        while (hero.isAlive() && !monsters.empty()) {
+            std::cout
+                << hero.getName() << "(" << hero.getLevel() << ")"
+                << " vs "
+                << monsters.front().getName()
+                << std::endl;
+            hero.fightTilDeath(monsters.front());
+            if (!monsters.front().isAlive()) monsters.pop_front();
+        }
+        std::cout << (hero.isAlive() ? "The hero won." : "The hero died.") << std::endl;
+        std::cout << hero.getName() << ": LVL" << hero.getLevel() << std::endl
+            << "   HP: " << hero.getHealthPoints() << "/" << hero.getMaxHealthPoints() << std::endl
+            << "  DMG: " << hero.getDamage() << std::endl
+            << "  ACD: " << hero.getAttackCoolDown() << std::endl
+            ;
+    }
+    catch (const JSON::ParseException & e) { bad_exit(4); }
+    return 0;
 }
