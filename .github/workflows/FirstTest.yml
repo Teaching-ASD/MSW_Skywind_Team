@@ -2,7 +2,7 @@ name: Documentation
 
 on:
   push:
-    branches: [ unittests ]
+    branches: [ makefile ]
 
 jobs:
   build:
