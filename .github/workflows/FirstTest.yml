@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: g++-10 -std=c++17 -lstdc++fs *.cpp
       - run: sudo apt install clang
-      - run: g++ *.cpp -Wall
-      - run:  g++ *.cpp -Wextra
+      - run: g++-10 *.cpp -Wall
+      - run:  g++-10 *.cpp -Wextra
       - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
       - run: cppcheck *.cpp --enable=warning
