@@ -151,4 +151,4 @@ std::map<std::string, std::string> Json::jsonParse(std::string file){
     return Datas;
 }
 
-Json::Json() {};
+Json::~Json() {};
