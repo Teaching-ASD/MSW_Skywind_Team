@@ -37,8 +37,8 @@ void Warrior::setHp(int hp){
 void Warrior::setDmg(int dmg){
     this->dmg=dmg;
 }
-void Warrior::setAttackCd(float){
-    this->attackcooldown=attackcooldown;
+void Warrior::setAttackCd(float attackcooldown_){
+    this->attackcooldown=attackcooldown_;
 }
 
 Warrior Warrior::parseUnit(std::map<std::string,std::string> map){

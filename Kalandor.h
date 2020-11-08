@@ -42,6 +42,15 @@ public:
     */
 	void modDatas();
 
+
+
+    /**
+    * \brief getExp metódus.
+    * Visszaadja, hogy mennyi tapasztalati ponttal rendelkezik a Kalandor.
+    */
+    int getExp() const;
+
+
     /**
     * \brief addExp metódus.
     * A Kalandor szintlépéseihez szükséges tapasztalati pontokat növelő függvény.
