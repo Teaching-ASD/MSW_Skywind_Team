@@ -11,12 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra -Wall
       - run: sudo apt install clang
       - run: sudo apt install cppcheck
+      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra -Wall -fsanitize=address -fsanitize=memory
       - run: cppcheck *.cpp --enable=warning
-      - run: clang++ *.cpp -fsanitize=address
-      - run: clang++ *.cpp -fsanitize=memory
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
       - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
       - name: Upload file
