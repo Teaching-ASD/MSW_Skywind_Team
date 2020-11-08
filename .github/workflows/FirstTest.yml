@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: sudo apt install clang
       - run: sudo apt install cppcheck
-      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra -Wall -fsanitize=address -fsanitize=memory
+      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra
       - run: cppcheck *.cpp --enable=warning
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
       - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
