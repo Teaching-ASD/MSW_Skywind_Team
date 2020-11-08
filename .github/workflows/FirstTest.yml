@@ -14,7 +14,7 @@ jobs:
       - run: diff outputs.txt results.txt
       - run: sudo apt install clang
       - run: make clean
-      - run: make
+      - run: make game
       - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
       - run: cppcheck *.cpp --enable=warning
