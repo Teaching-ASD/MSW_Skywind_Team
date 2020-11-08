@@ -29,6 +29,9 @@ private:
 	int hp; ///< A Warrior életerőpontja
     int dmg;  ///< A Warrior sebzéspontja
     float attackcooldown; ///< A Warrior támadásának betöltési ideje
+
+
+    
     void Attack(Warrior*);
 
   
@@ -39,14 +42,12 @@ public:
      * A Warrior létrehozásakor paraméterként megadott értékekkel ruházza fel a Warriort.
      * (név, hp, dmg, attackcooldown)
     */
-
 	  Warrior(std::string, int, int, float);
 
     /** 
      * \brief Name getter.
      * Visszaadja a Warrior nevét.
     */
-
 	  std::string getName() const;
 
 
@@ -54,7 +55,6 @@ public:
      * \brief Hp getter.
      * Visszaadja a Warrior életerőpontját.
     */
-
 	  int getHp() const;
 
 
@@ -62,19 +62,33 @@ public:
      * \brief Dmg getter.
      * Visszaadja a Warrior sebzéspontját.
     */
-
 	  int getDmg() const;
-	  void setHp(int);
-	  void setDmg(int);
-	  void setAttackCd(float);
 
 
-    /** 
-     * \brief Attackcooldown getter.
-     * Visszaadja a Warrior támadásának töltési idejét.
+    /**
+    * \brief Attackcooldown getter.
+    * Visszaadja a Warrior támadásának töltési idejét.
     */
-    float getAttackCoolDown() const;
+      float getAttackCoolDown() const;
 
+     /**
+     * \brief HP setter.
+     * Beállítja a Warrior életerőpontját a paraméterben megadott értékre.
+     */
+	    void setHp(int);
+
+
+     /**
+     * \brief DMG setter.
+     * Beállítja a Warrior sebzéspontját a paraméterben megadott értékre.
+     */
+	    void setDmg(int);
+
+     /**
+     * \brief Attack cooldwon setter.
+     * Beállítja a Warrior támadásának töltési idejét a paraméterben megadott értékre.
+     */
+	    void setAttackCd(float);
   
 
     /**

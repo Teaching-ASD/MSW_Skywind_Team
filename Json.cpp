@@ -16,7 +16,9 @@ std::string Json::inputFile(std::string fileName){
     {
         OriginalS += s;
     }
+    file.close();
     return OriginalS;
+    
 }
 
 std::string Json::nameFromFile(std::string s){
@@ -148,3 +150,5 @@ std::map<std::string, std::string> Json::jsonParse(std::string file){
 
     return Datas;
 }
+
+Json::~Json() {};
