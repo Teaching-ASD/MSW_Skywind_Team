@@ -30,6 +30,10 @@ void Kalandor::modDatas(){
     }
 }
 
+int Kalandor::getExp() const{
+    return this->exp;
+}
+
 void Kalandor::Attack(Kalandor* k){
     if(k->getHp() - this->getDmg() > 0){
     k->setHp(k->getHp() - this->getDmg());
