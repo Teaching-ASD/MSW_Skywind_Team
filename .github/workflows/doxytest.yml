@@ -4,7 +4,7 @@ name: Doxygen Test
 on:
   push:
     branches:
-      - unittests
+      - documentation
       - gh-pages
 
 jobs:
