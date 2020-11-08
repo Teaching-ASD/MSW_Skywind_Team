@@ -1,4 +1,4 @@
-OBJS:= main.o hero.o monster.o json.o
+OBJS:= main.o Hero.o Monster.o JSON.o
 CFLAGS:= -Wall
 CC:= g++
 
@@ -8,14 +8,14 @@ game: $(OBJS)
 main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
 
-hero.o: hero.cpp
-	$(CC) $(CFLAGS) -c hero.cpp
+hero.o: Hero.cpp
+	$(CC) $(CFLAGS) -c Hero.cpp
 
-monster.o: monster.cpp
-	$(CC) $(CFLAGS) -c monster.cpp
+monster.o: Monster.cpp
+	$(CC) $(CFLAGS) -c Monster.cpp
 
-json.o: json.cpp
-	$(CC) $(CFLAGS) -c json.cpp
+json.o: JSON.cpp
+	$(CC) $(CFLAGS) -c JSON.cpp
 
 clean:
 	rm -rf *.o game ./DOCS
