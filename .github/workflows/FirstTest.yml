@@ -13,6 +13,7 @@ jobs:
       - run: bash ./teszt.bash
       - run: diff outputs.txt results.txt
       - run: sudo apt install clang
+      - run: make clean
       - run: make
       - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
