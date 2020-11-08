@@ -4,17 +4,17 @@ CC:= g++
 
 game: $(OBJS)
 	$(CC) $(CFLAGS) -o game $(OBJS)
-
+	
 main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
-
-hero.o: Hero.cpp
+	
+Hero.o: Hero.cpp
 	$(CC) $(CFLAGS) -c Hero.cpp
-
-monster.o: Monster.cpp
+	
+Monster.o: Monster.cpp
 	$(CC) $(CFLAGS) -c Monster.cpp
-
-json.o: JSON.cpp
+	
+JSON.o: JSON.cpp
 	$(CC) $(CFLAGS) -c JSON.cpp
 
 clean:
