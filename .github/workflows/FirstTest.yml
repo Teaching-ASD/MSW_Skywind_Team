@@ -1,9 +1,9 @@
 
-name: LevelUp
+name: Documentation
 
 on:
   push:
-    branches: [ jsonparser ]
+    branches: [ documentation ]
 
 
 jobs:
