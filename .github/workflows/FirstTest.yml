@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 name: RefactorTest
 
 on:
   push:
     branches: [ refactor ]
 
+=======
+name: Makefile
+
+on:
+  push:
+    branches: [ makefile ]
+>>>>>>> master
 
 jobs:
   build:
@@ -11,6 +19,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: sudo apt install clang
+<<<<<<< HEAD
+=======
+      - run: make game
+      - run: clang++ *.cpp -Wall
+>>>>>>> master
       - run: sudo apt install cppcheck
       - run: sudo apt install valgrind
       - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra
