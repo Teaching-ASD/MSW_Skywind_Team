@@ -1,8 +1,8 @@
-name: Documentation
+name: Makefile
 
 on:
   push:
-    branches: [ unittests ]
+    branches: [ makefile ]
 
 jobs:
   build:
@@ -13,8 +13,7 @@ jobs:
       - run: bash ./teszt.bash
       - run: diff outputs.txt results.txt
       - run: sudo apt install clang
-      - run: g++ *.cpp -Wall
-      - run:  g++ *.cpp -Wextra
+      - run: make game
       - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
       - run: cppcheck *.cpp --enable=warning
