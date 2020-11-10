@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt install clang
       - run: make game
-      - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
       - run: sudo apt install valgrind
       - run: make clean
