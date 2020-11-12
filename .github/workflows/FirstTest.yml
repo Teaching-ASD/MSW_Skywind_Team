@@ -1,25 +1,24 @@
-name: Makefile
+name: RefactorTest
 
 on:
   push:
-    branches: [ makefile ]
+    branches: [ refactor ]
+
+
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: g++ -std=c++17 *.cpp
-      - run: bash ./teszt.bash
-      - run: diff outputs.txt results.txt
-      - run: sudo apt install clang
       - run: make game
-      - run: clang++ *.cpp -Wall
       - run: sudo apt install cppcheck
+      - run: sudo apt install valgrind
+      - run: make clean
+      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra
       - run: cppcheck *.cpp --enable=warning
-      - run: clang++ *.cpp -fsanitize=address
-      - run: clang++ *.cpp -fsanitize=memory
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
+      - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
