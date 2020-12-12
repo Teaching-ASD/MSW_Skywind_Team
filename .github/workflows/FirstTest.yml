@@ -15,7 +15,7 @@ jobs:
       - run: make game
       - run: cppcheck *.cpp --enable=warning
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
-      - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
+      - run: valgrind --leak-check=full --error-exitcode=1 ./game scenario1.json
       - run: make clean
       - name: Upload file
         uses: actions/upload-artifact@v2
