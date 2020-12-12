@@ -2,27 +2,26 @@ name: RefactorTest
 
 on:
   push:
-    branches: [ refactor ]
+    branches: [ docker ]
 
 
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: mzsolt97/mosze
     steps:
       - uses: actions/checkout@v2
       - run: make game
-      - run: sudo apt install cppcheck
-      - run: sudo apt install valgrind
-      - run: make clean
-      - run: g++-10 -std=c++17 -lstdc++fs *.cpp -Wextra
       - run: cppcheck *.cpp --enable=warning
       - run: cppcheck *.cpp --enable=warning,style,performance --output-file=style_performance1.txt
       - run: valgrind --leak-check=full --error-exitcode=1 ./a.out scenario1.json
+      - run: make clean
       - name: Upload file
         uses: actions/upload-artifact@v2
         with:
           name: style_performance1
           path: style_performance1.txt
+
 
           
