@@ -36,7 +36,7 @@ void Hero::setAttackCd(float attackCd_) {
 
 void Hero::modDatas() {
 
-    while (this->level == (this->exp / this->expPerLvl)) {
+    while (this->level <= (this->exp / this->expPerLvl)) {
         this->maxHp += this->hpBonus;
         this->setHp(this->maxHp);
 
