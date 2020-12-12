@@ -8,5 +8,4 @@ jobs:
     container: mzsolt97/mosze
     steps:
       - uses: actions/checkout@v2
-      - run: cd /usr/src/gtest && cmake . && make && cp *.a /usr/lib && ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
       - run: cd units && cmake CMakeLists.txt && make && ./googleTests
