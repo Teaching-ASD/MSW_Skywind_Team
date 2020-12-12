@@ -13,7 +13,7 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      - run: doxygen doxconf
+      - run: make doc
         
       - name: Push git subdirectory as branch
         uses: s0/git-publish-subdir-action@v2.4.0
