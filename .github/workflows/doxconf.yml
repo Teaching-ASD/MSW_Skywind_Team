@@ -3,19 +3,19 @@ name: Doxygen Test
 on:
   push:
     branches: 
-      - refactor
+      - docker
       - gh-pages
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    container: mzsolt97/mosze
+    
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt-get install doxygen
-      - run: sudo apt-get install graphviz
       - run: doxygen doxconf
+        
       - name: Push git subdirectory as branch
-
         uses: s0/git-publish-subdir-action@v2.4.0
 
         env:
